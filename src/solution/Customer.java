@@ -1,6 +1,7 @@
 package solution;
 
 import java.math.BigDecimal;
+import java.util.ArrayList;
 import java.util.List;
 
 import javax.persistence.*;
@@ -8,8 +9,8 @@ import javax.persistence.*;
 
 @NamedQuery(
 			name="Customer.loadCustomerByName",
-			query="SELECT c FROM Customer c" +
-			"WHERE c.customer =:name")
+			query="SELECT c FROM Customer c " +
+			"WHERE c.name =:name")
 
 
 @Entity
@@ -17,7 +18,6 @@ import javax.persistence.*;
 public class Customer {
 	
 	@Id 
-	@GeneratedValue(strategy = GenerationType.TABLE)
 	@Column(name= "customerNumber", nullable = false, length = 11)
 	private int customerNumber;
 	
@@ -31,7 +31,7 @@ public class Customer {
 	private String cFirstName;
 	
 	@Column(name= "phone", nullable = false, length = 50)
-	private int phoneNumber;
+	private String phoneNumber;
 	
 	@Column(name= "addressLine1", nullable = false, length = 50)
 	private String address1;
@@ -48,10 +48,10 @@ public class Customer {
 	private String country;
 	
 	private BigDecimal creditLimit;
-	
+		
 	// 1:N Relationship Bidirectional with Order
 	@OneToMany(mappedBy = "customer")
-	private List<Order> orders;
+	private List<Order> orders = new ArrayList<Order>();
 	
 	//Entity Link 1:N -- Create link and Delete link
 	//a hand shake between the customer and orders 
@@ -88,10 +88,10 @@ public class Customer {
 	public void setcFirstName(String cFirstName) {
 		this.cFirstName = cFirstName;
 	}
-	public int getPhoneNumber() {
+	public String getPhoneNumber() {
 		return phoneNumber;
 	}
-	public void setPhoneNumber(int phoneNumber) {
+	public void setPhoneNumber(String phoneNumber) {
 		this.phoneNumber = phoneNumber;
 	}
 	public String getAddress1() {

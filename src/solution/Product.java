@@ -9,8 +9,8 @@ import javax.persistence.*;
 
 @NamedQuery(
 			name="Product.loadProductByName",
-			query="SELECT p FROM Product p" +
-			"WHERE p.product =:name")
+			query="SELECT p FROM Product p " +
+			"WHERE p.name = :name")
 
 
 @Entity
@@ -18,7 +18,6 @@ import javax.persistence.*;
 public class Product {
 	
 	@Id 
-	@GeneratedValue(strategy = GenerationType.TABLE)
 	@Column(name= "productCode", nullable = false, length = 11)
 	private int productNumber;
 	

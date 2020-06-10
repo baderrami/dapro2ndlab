@@ -13,7 +13,6 @@ import javax.persistence.*;
 public class OrderDetail {
 	
 	@Id 
-	@GeneratedValue(strategy = GenerationType.TABLE)
 	private int orderDetailNumber;
 	
 	@Column(name= "quantityOrdered")

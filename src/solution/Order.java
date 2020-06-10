@@ -9,36 +9,32 @@ import javax.persistence.*;
 
 
 @NamedQuery(
-	      name="`order`.getOrderDateByCustomerNumber",
-	      query = "SELECT o FROM `order` o JOIN o.customer c WHERE c.customerNumber=:customernumber"
+	      name="order.getOrderDateByCustomerNumber",
+	      query = "SELECT o FROM Order o JOIN o.customer c WHERE c.customerNumber=:customernumber"
 	)
 
 
 @Entity
-@Table(name= "order")
+@Table(name= "`order`")
 public class Order {
 	
 	@Id 
-	@GeneratedValue(strategy = GenerationType.TABLE)
 	@Column(name= "orderNumber")
 	private int orderNumber;
 	
 	@Column(name= "orderDate")
-	@Temporal(TemporalType.DATE)
 	private Date oDate;
 	
 	@Column(name= "requiredDate")
-	@Temporal(TemporalType.DATE)
 	private Date rDate;
 	
 	@Column(name= "shippedDate")
-	@Temporal(TemporalType.DATE)
 	private Date sDate;
 	
 	@Column(name= "status")
 	private String oStatus;
 	
-	@Column(name= "status")
+	@Column(name= "comments")
 	private String comments;
 	
 	// N:1 Relationship Bidirectional with Customer
